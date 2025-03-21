@@ -1,0 +1,78 @@
+apiVersion: v1
+items:
+- apiVersion: networking.k8s.io/v1
+  kind: Ingress
+  metadata:
+    annotations:
+      nginx.ingress.kubernetes.io/proxy-body-size: "0"
+      nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    creationTimestamp: "2025-03-21T16:00:34Z"
+    generation: 1
+    name: registry-ingress
+    namespace: registry
+    resourceVersion: "409249"
+    uid: dd0792f2-9078-4458-b5e2-41dc53e15035
+  spec:
+    ingressClassName: nginx
+    rules:
+    - host: registry.gonella.co.uk
+      http:
+        paths:
+        - backend:
+            service:
+              name: registry
+              port:
+                number: 5000
+          path: /
+          pathType: Prefix
+    tls:
+    - hosts:
+      - registry.gonella.co.uk
+      secretName: gonella-co-uk-tls
+  status:
+    loadBalancer:
+      ingress:
+      - ip: 192.168.5.219
+      - ip: 192.168.5.220
+      - ip: 192.168.5.221
+      - ip: 192.168.5.222
+      - ip: 192.168.5.223
+- apiVersion: networking.k8s.io/v1
+  kind: Ingress
+  metadata:
+    annotations:
+      nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    creationTimestamp: "2025-03-21T16:00:34Z"
+    generation: 1
+    name: registry-ui-ingress
+    namespace: registry
+    resourceVersion: "407981"
+    uid: ce8a4230-1b64-4f81-896a-b6f720c7427b
+  spec:
+    ingressClassName: nginx
+    rules:
+    - host: registry-ui.gonella.co.uk
+      http:
+        paths:
+        - backend:
+            service:
+              name: registry-ui
+              port:
+                number: 80
+          path: /
+          pathType: Prefix
+    tls:
+    - hosts:
+      - registry-ui.gonella.co.uk
+      secretName: gonella-co-uk-tls
+  status:
+    loadBalancer:
+      ingress:
+      - ip: 192.168.5.219
+      - ip: 192.168.5.220
+      - ip: 192.168.5.221
+      - ip: 192.168.5.222
+      - ip: 192.168.5.223
+kind: List
+metadata:
+  resourceVersion: ""

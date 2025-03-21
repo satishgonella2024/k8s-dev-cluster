@@ -1,0 +1,31 @@
+apiVersion: v1
+items:
+- apiVersion: v1
+  kind: Service
+  metadata:
+    creationTimestamp: "2025-03-20T17:16:47Z"
+    name: jenkins
+    namespace: jenkins
+    resourceVersion: "87856"
+    uid: 2161fbe1-fb3e-40aa-98c5-543dcdc84875
+  spec:
+    clusterIP: 10.43.229.75
+    clusterIPs:
+    - 10.43.229.75
+    internalTrafficPolicy: Cluster
+    ipFamilies:
+    - IPv4
+    ipFamilyPolicy: SingleStack
+    ports:
+    - port: 8080
+      protocol: TCP
+      targetPort: 8080
+    selector:
+      app: jenkins
+    sessionAffinity: None
+    type: ClusterIP
+  status:
+    loadBalancer: {}
+kind: List
+metadata:
+  resourceVersion: ""

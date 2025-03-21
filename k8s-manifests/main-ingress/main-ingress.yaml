@@ -1,0 +1,46 @@
+apiVersion: v1
+items:
+- apiVersion: networking.k8s.io/v1
+  kind: Ingress
+  metadata:
+    annotations:
+      cert-manager.io/cluster-issuer: letsencrypt-cloudflare
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"networking.k8s.io/v1","kind":"Ingress","metadata":{"annotations":{"cert-manager.io/cluster-issuer":"letsencrypt-cloudflare","nginx.ingress.kubernetes.io/force-ssl-redirect":"true"},"name":"gonella-ingress","namespace":"default"},"spec":{"ingressClassName":"nginx","rules":[{"host":"gonella.co.uk","http":{"paths":[{"backend":{"service":{"name":"nginx-service","port":{"number":80}}},"path":"/","pathType":"Prefix"}]}}],"tls":[{"hosts":["gonella.co.uk","*.gonella.co.uk"],"secretName":"gonella-co-uk-tls"}]}}
+      nginx.ingress.kubernetes.io/force-reload: "true"
+      nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+    creationTimestamp: "2025-03-20T12:24:32Z"
+    generation: 3
+    name: gonella-ingress
+    namespace: default
+    resourceVersion: "87495"
+    uid: 3c16cf61-327d-42f8-a076-6e8143e213f9
+  spec:
+    ingressClassName: nginx
+    rules:
+    - host: gonella.co.uk
+      http:
+        paths:
+        - backend:
+            service:
+              name: nginx-test
+              port:
+                number: 80
+          path: /
+          pathType: Prefix
+    tls:
+    - hosts:
+      - gonella.co.uk
+      - '*.gonella.co.uk'
+      secretName: gonella-co-uk-tls
+  status:
+    loadBalancer:
+      ingress:
+      - ip: 192.168.5.219
+      - ip: 192.168.5.220
+      - ip: 192.168.5.221
+      - ip: 192.168.5.222
+      - ip: 192.168.5.223
+kind: List
+metadata:
+  resourceVersion: ""

@@ -1,0 +1,41 @@
+apiVersion: v1
+items:
+- apiVersion: networking.k8s.io/v1
+  kind: Ingress
+  metadata:
+    annotations:
+      nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    creationTimestamp: "2025-03-20T17:16:47Z"
+    generation: 1
+    name: jenkins-ingress
+    namespace: jenkins
+    resourceVersion: "87871"
+    uid: e0dd9bc8-b8df-4983-9f91-0d9cef00e6b4
+  spec:
+    ingressClassName: nginx
+    rules:
+    - host: jenkins.gonella.co.uk
+      http:
+        paths:
+        - backend:
+            service:
+              name: jenkins
+              port:
+                number: 8080
+          path: /
+          pathType: Prefix
+    tls:
+    - hosts:
+      - jenkins.gonella.co.uk
+      secretName: gonella-co-uk-tls
+  status:
+    loadBalancer:
+      ingress:
+      - ip: 192.168.5.219
+      - ip: 192.168.5.220
+      - ip: 192.168.5.221
+      - ip: 192.168.5.222
+      - ip: 192.168.5.223
+kind: List
+metadata:
+  resourceVersion: ""

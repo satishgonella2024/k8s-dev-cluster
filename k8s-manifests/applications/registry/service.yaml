@@ -1,0 +1,57 @@
+apiVersion: v1
+items:
+- apiVersion: v1
+  kind: Service
+  metadata:
+    creationTimestamp: "2025-03-21T16:00:34Z"
+    name: registry
+    namespace: registry
+    resourceVersion: "407756"
+    uid: 99451c0d-8d4d-466d-9ea7-14a3a144f1f8
+  spec:
+    clusterIP: 10.43.124.66
+    clusterIPs:
+    - 10.43.124.66
+    internalTrafficPolicy: Cluster
+    ipFamilies:
+    - IPv4
+    ipFamilyPolicy: SingleStack
+    ports:
+    - port: 5000
+      protocol: TCP
+      targetPort: 5000
+    selector:
+      app: registry
+    sessionAffinity: None
+    type: ClusterIP
+  status:
+    loadBalancer: {}
+- apiVersion: v1
+  kind: Service
+  metadata:
+    creationTimestamp: "2025-03-21T16:00:34Z"
+    name: registry-ui
+    namespace: registry
+    resourceVersion: "407780"
+    uid: 5bd41601-9e6f-433e-a0cb-518657576cb7
+  spec:
+    clusterIP: 10.43.245.3
+    clusterIPs:
+    - 10.43.245.3
+    internalTrafficPolicy: Cluster
+    ipFamilies:
+    - IPv4
+    ipFamilyPolicy: SingleStack
+    ports:
+    - port: 80
+      protocol: TCP
+      targetPort: 80
+    selector:
+      app: registry-ui
+    sessionAffinity: None
+    type: ClusterIP
+  status:
+    loadBalancer: {}
+kind: List
+metadata:
+  resourceVersion: ""
